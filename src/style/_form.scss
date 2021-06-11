@@ -1,0 +1,38 @@
+.shorten-form {
+  display: flex;
+  padding: 7rem 8rem;
+  border-radius: 1rem;
+  background-color: $color-primary-violet;
+  background-image: url("/img/bg-shorten-desktop.svg");
+  background-size: cover;
+
+  &__input {
+    font-family: inherit;
+    color: $color-tertiary-blue;
+    font-size: 2.4rem;
+    padding: 2.5rem 3.5rem;
+    flex: 1;
+    border: none;
+    border-radius: 1rem;
+  }
+
+  &__btn {
+    margin-left: 3rem;
+  }
+
+  @include media-sm {
+    flex-direction: column;
+    padding: 4rem;
+    background-position: center;
+
+    &__input {
+      font-size: 2rem;
+      padding: 1.5rem 2.5rem;
+      margin-bottom: 3rem;
+    }
+
+    &__btn {
+      margin-left: 0;
+    }
+  }
+}

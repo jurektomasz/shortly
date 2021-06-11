@@ -1,0 +1,33 @@
+.header-wrapper {
+  padding: 3rem;
+  margin-bottom: 10rem;
+}
+
+.main-wrapper {
+  background-color: #eff1f7;
+  padding: 3rem;
+}
+
+.footer-wrapper {
+  background-color: $color-tertiary-dark;
+  color: white;
+  padding: 6rem 3rem;
+}
+
+.wrapper {
+  max-width: 144rem;
+  margin: 0 auto;
+}
+
+.section-features {
+  margin-top: 8rem;
+  padding: 4rem 0;
+
+  @include media-sm {
+    margin-top: 2rem;
+  }
+}
+
+.move-content {
+  transform: translateY(-15rem);
+}

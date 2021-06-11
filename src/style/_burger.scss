@@ -1,0 +1,33 @@
+.burger-container {
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  width: 3rem;
+  height: 3rem;
+  cursor: pointer;
+  z-index: 3;
+}
+
+.burger {
+  position: relative;
+  width: 3rem;
+  height: 3px;
+  background: $color-tertiary-gray;
+
+  &::before {
+    top: -9px;
+  }
+
+  &::after {
+    top: 9px;
+  }
+
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    width: 3rem;
+    height: 3px;
+    background: $color-tertiary-gray;
+  }
+}

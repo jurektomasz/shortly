@@ -1,0 +1,13 @@
+.banner {
+  background-color: $color-primary-violet;
+  background-image: url("/img/bg-boost-desktop.svg");
+  background-size: cover;
+
+  color: white;
+  text-align: center;
+  padding: 8rem;
+
+  @include media-sm {
+    padding: 9rem 3rem;
+  }
+}

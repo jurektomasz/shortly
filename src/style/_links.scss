@@ -1,0 +1,25 @@
+.links-list {
+}
+
+.link {
+  width: 100%;
+  font-size: 2.4rem;
+  padding: 3rem;
+  margin-top: 2rem;
+  background-color: #fff;
+  display: flex;
+
+  &--long {
+    // flex-basis: 0;
+    // flex-grow: 2;
+    height: 3.3rem;
+    width: 80%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  &--short {
+    width: 25%;
+    margin-right: 2rem;
+    color: $color-primary-cyan;
+  }
+}
