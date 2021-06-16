@@ -23,6 +23,9 @@ exports.getShortUrlById = async (req, res) => {
 
 exports.createShortUrl = (req, res) => {
   const newUrlData = req.body;
+  const { user } = res.locals;
+
+  if (user && user._id) newUrlData.owner = user._id;
 
   ShortUrl.create(newUrlData, (errors, newUrl) => {
     if (errors) {
@@ -31,4 +34,15 @@ exports.createShortUrl = (req, res) => {
 
     return res.json(newUrl);
   });
+};
+
+exports.getUserUrls = async (req, res) => {
+  const { user } = res.locals;
+
+  try {
+    const urls = await ShortUrl.find({ owner: user._id });
+    return res.json(urls);
+  } catch (error) {
+    return res.status(422).send(error);
+  }
 };

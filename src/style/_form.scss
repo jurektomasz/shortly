@@ -36,3 +36,106 @@
     }
   }
 }
+
+.form {
+  &-container {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    background-color: $color-primary-violet;
+    background-image: url("/img/bg-boost-desktop.svg");
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  &-wrapper {
+    margin-top: 5rem;
+    width: 55rem;
+    background-color: $color-secondary-gray;
+    border-radius: 1rem;
+    padding: 5rem;
+  }
+  &--main {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+  &-header {
+    width: 100%;
+    text-transform: uppercase;
+    line-height: 1.2;
+    text-align: center;
+    display: block;
+    font-size: 3rem;
+    padding-bottom: 5.5rem;
+  }
+  &-input {
+    line-height: 1.2;
+    display: block;
+    width: 100%;
+    border: 1px solid transparent;
+    border-radius: 1rem;
+    font-family: inherit;
+    color: $color-tertiary-blue;
+    font-size: 2rem;
+    padding: 2.5rem 3.5rem 2.5rem 5.5rem;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    transition: border 0.2s;
+
+    &::placeholder {
+      color: $color-tertiary-violet;
+    }
+
+    &:focus {
+      outline: none;
+      border: 1px solid $color-primary-cyan;
+    }
+
+    &:focus + .form-icon {
+      color: $color-primary-cyan;
+    }
+
+    &__wrapper {
+      position: relative;
+      width: 100%;
+      margin-bottom: 1.6rem;
+    }
+  }
+  &-label {
+    display: none;
+  }
+  &-icon {
+    color: $color-tertiary-violet;
+    font-size: 3rem;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding-left: 2rem;
+    transition: all 0.3s;
+  }
+}
+
+.member {
+  width: 100%;
+  text-align: center;
+  margin-top: 5rem;
+  font-size: 1.6rem;
+
+  &-question {
+    margin-right: 1rem;
+  }
+  &-link {
+    color: $color-primary-cyan;
+    text-decoration: underline;
+    transition: all 0.2s;
+
+    &:hover {
+      letter-spacing: 1px;
+    }
+  }
+}

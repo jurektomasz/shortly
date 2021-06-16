@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export default function Navigation() {
   const [windowWidth, setWindowWidth] = React.useState(window.innerWidth);
@@ -54,14 +55,14 @@ export default function Navigation() {
 
         <ul className="menu__list">
           <li className="menu__item">
-            <a href="index.js" className="menu__link">
+            <Link to="/login" className="menu__link">
               Login
-            </a>
+            </Link>
           </li>
           <li className="menu__item">
-            <a href="index.js" className="menu__link btn btn-tertiary">
+            <Link to="/register" className="menu__link btn btn-tertiary">
               Sign Up
-            </a>
+            </Link>
           </li>
         </ul>
       </div>
