@@ -1,11 +1,43 @@
-import React from "react";
+import React, { useReducer } from "react";
+import PropTypes from "prop-types";
 import Button from "./Button";
 import { Link } from "react-router-dom";
 
 import { HiOutlineMail } from "react-icons/hi";
 import { RiLockPasswordLine } from "react-icons/ri";
 
-function Login() {
+import { withAuth } from "../ProvideAuth";
+import formReducer from "./useFormReducer";
+
+// const formReducer = (state, e) => {
+//   if (e.reset) {
+//     return { email: "", password: "" };
+//   }
+//   return {
+//     ...state,
+//     [e.name]: e.value,
+//   };
+// };
+
+function Login({ auth, location }) {
+  const [formData, setFormData] = useReducer(formReducer, {});
+
+  const { loginUser } = auth;
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    await loginUser(formData);
+  };
+
+  const handleChange = (e) => {
+    setFormData({
+      name: e.target.name,
+      value: e.target.value,
+    });
+  };
+
+  const { message } = location.state || "";
+
   return (
     <div className="form-container">
       <div className="logo">
@@ -14,8 +46,10 @@ function Login() {
         </a>
       </div>
       <div className="form-wrapper">
-        <form className="form--main">
+        <form className="form--main" onSubmit={handleSubmit}>
           <h2 className="form-header">LOGIN</h2>
+          {message && <h2 className="form-header">{message}</h2>}
+
           <div className="form-input__wrapper">
             <label htmlFor="loginEmail" className="form-label">
               EMAIL
@@ -26,6 +60,8 @@ function Login() {
               id="loginEmail"
               name="email"
               placeholder="Email"
+              onChange={handleChange}
+              value={formData.email || ""}
             />
             <span className="form-icon">
               <HiOutlineMail />
@@ -41,6 +77,8 @@ function Login() {
               id="loginPassword"
               name="password"
               placeholder="Password"
+              onChange={handleChange}
+              value={formData.password || ""}
             />
             <span className="form-icon">
               <RiLockPasswordLine />
@@ -59,4 +97,8 @@ function Login() {
   );
 }
 
-export default Login;
+Login.propTypes = {
+  auth: PropTypes.object.isRequired,
+};
+
+export default withAuth(Login);

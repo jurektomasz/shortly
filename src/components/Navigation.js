@@ -1,7 +1,11 @@
 import React from "react";
+import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
+import { withAuth } from "../ProvideAuth";
 
-export default function Navigation() {
+import { FaRegUser } from "react-icons/fa";
+
+function Navigation({ auth }) {
   const [windowWidth, setWindowWidth] = React.useState(window.innerWidth);
   React.useEffect(() => {
     function handleResize() {
@@ -23,7 +27,7 @@ export default function Navigation() {
   return (
     <nav className="navigation">
       <div className="logo">
-        <a href="index.js" className="logo__img">
+        <a href="/" className="logo__img">
           <img src="/img/logo-d.svg" alt="logo" />
         </a>
       </div>
@@ -37,35 +41,74 @@ export default function Navigation() {
       <div className="menu">
         <ul className="menu__list menu__list--features">
           <li className="menu__item">
-            <a href="index.js" className="menu__link">
+            <a href="/" className="menu__link">
               Features
             </a>
           </li>
           <li className="menu__item">
-            <a href="index.js" className="menu__link">
+            <a href="/" className="menu__link">
               Pricing
             </a>
           </li>
           <li className="menu__item">
-            <a href="index.js" className="menu__link">
+            <a href="/" className="menu__link">
               Resources
             </a>
           </li>
         </ul>
 
         <ul className="menu__list">
-          <li className="menu__item">
-            <Link to="/login" className="menu__link">
-              Login
-            </Link>
-          </li>
-          <li className="menu__item">
-            <Link to="/register" className="menu__link btn btn-tertiary">
-              Sign Up
-            </Link>
-          </li>
+          {!auth.isAuthenticated() && (
+            <>
+              <>
+                <li className="menu__item">
+                  <Link to="/login" className="menu__link">
+                    Login
+                  </Link>
+                </li>
+                <li className="menu__item">
+                  <Link to="/register" className="menu__link btn btn-tertiary">
+                    Sign Up
+                  </Link>
+                </li>
+              </>
+            </>
+          )}
+          {auth.isAuthenticated() && (
+            <>
+              <>
+                <li className="menu__item">
+                  <a className="menu__link" href="/">
+                    My Shorten URL's
+                  </a>
+                </li>
+                <li className="menu__item">
+                  <a
+                    className="btn btn-tertiary menu__link"
+                    href="/"
+                    onClick={auth.logoutUser}
+                  >
+                    Logout
+                  </a>
+                </li>
+                <li className="menu__item menu__user">
+                  <span className="menu__link btn btn-tertiary btn-user">
+                    <div className="menu__user--icon">
+                      <FaRegUser />
+                    </div>
+                  </span>
+                </li>
+              </>
+            </>
+          )}
         </ul>
       </div>
     </nav>
   );
 }
+
+Navigation.propTypes = {
+  auth: PropTypes.object.isRequired,
+};
+
+export default withAuth(Navigation);

@@ -1,13 +1,51 @@
-import React from "react";
+import React, { useReducer, useState } from "react";
 import Button from "./Button";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 
 import { HiOutlineMail } from "react-icons/hi";
 import { RiLockPasswordLine } from "react-icons/ri";
 import { FaRegUser } from "react-icons/fa";
 
+import formReducer from "./useFormReducer";
+
 export default function Register() {
-  return (
+  const [formData, setFormData] = useReducer(formReducer, {});
+  const [shouldRedirect, setShouldRedirect] = useState(false);
+
+  const registerUser = async (credentials) => {
+    await fetch("http://localhost:3001/api/v1/users/register", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(credentials),
+    });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      await registerUser(formData).then(() => {
+        setShouldRedirect(true);
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const handleChange = (e) => {
+    setFormData({
+      name: e.target.name,
+      value: e.target.value,
+    });
+  };
+
+  return shouldRedirect ? (
+    <Redirect
+      to={{
+        pathname: "/login",
+        state: { message: "You have been succesfuly registered!" },
+      }}
+    />
+  ) : (
     <div className="form-container">
       <div className="logo">
         <a href="/" className="">
@@ -15,8 +53,8 @@ export default function Register() {
         </a>
       </div>
       <div className="form-wrapper">
-        <form className="form--main">
-          <h2 className="form-header">Register</h2>
+        <form className="form--main" onSubmit={handleSubmit}>
+          <h2 className="form-header">Sign up</h2>
           <div className="form-input__wrapper">
             <label htmlFor="registerUsername" className="form-label">
               USERNAME
@@ -27,6 +65,7 @@ export default function Register() {
               id="registerUsername"
               name="username"
               placeholder="Username"
+              onChange={handleChange}
             />
             <span className="form-icon">
               <FaRegUser />
@@ -42,6 +81,7 @@ export default function Register() {
               id="registerEmail"
               name="email"
               placeholder="Email"
+              onChange={handleChange}
             />
             <span className="form-icon">
               <HiOutlineMail />
@@ -57,6 +97,7 @@ export default function Register() {
               id="registerPassword"
               name="password"
               placeholder="Password"
+              onChange={handleChange}
             />
             <span className="form-icon">
               <RiLockPasswordLine />
@@ -75,6 +116,7 @@ export default function Register() {
               id="registerPasswordConfirmation"
               name="passwordConfirmation"
               placeholder="Password Confirmation"
+              onChange={handleChange}
             />
             <span className="form-icon">
               <RiLockPasswordLine />

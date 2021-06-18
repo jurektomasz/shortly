@@ -1,5 +1,4 @@
 import React from "react";
-import Button from "./Button";
 
 export default function Heading() {
   return (
@@ -10,7 +9,9 @@ export default function Heading() {
           Build your brand’s recognition and get detailed insights on how your
           links are performing.
         </p>
-        <Button text="Get Started" className="btn btn-primary" />
+        <a href="#shortenForm" className="btn btn-primary">
+          Get Started
+        </a>
       </div>
       <div className="main-heading__img">
         <img
