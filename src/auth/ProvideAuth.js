@@ -1,5 +1,5 @@
 import React, { useContext, createContext } from "react";
-import useToken from "./components/useToken";
+import useToken from "../components/helpers/useToken";
 import moment from "moment";
 import jwt from "jsonwebtoken";
 import { Redirect } from "react-router-dom";
@@ -38,7 +38,7 @@ function useProvideAuth() {
   const checkAuthState = () => {
     const decodedToken = decodeToken(token);
     if (decodedToken && moment().isBefore(getExpiration(decodedToken))) {
-      return true;
+      return decodedToken;
     }
     return false;
   };

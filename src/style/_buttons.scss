@@ -49,7 +49,10 @@
     }
   }
   &-copy {
-    padding: 1rem 3rem;
+    min-width: 13rem;
+    padding: 1.5rem 3.5rem;
+    font-size: 1.6rem;
+    font-weight: bold;
     border-radius: 0.7rem;
   }
   &-copied {

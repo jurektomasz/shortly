@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-import { withAuth } from "../ProvideAuth";
+import { withAuth } from "../../auth/ProvideAuth";
 
 import { FaRegUser } from "react-icons/fa";
 
@@ -78,9 +78,9 @@ function Navigation({ auth }) {
             <>
               <>
                 <li className="menu__item">
-                  <a className="menu__link" href="/">
+                  <Link className="menu__link" to="/userUrls">
                     My Shorten URL's
-                  </a>
+                  </Link>
                 </li>
                 <li className="menu__item">
                   <a

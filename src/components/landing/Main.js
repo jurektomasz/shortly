@@ -1,6 +1,6 @@
 import React from "react";
 
-import Form from "./Form";
+import ShortenForm from "./ShortenForm";
 import Features from "./Features";
 import Banner from "./Banner";
 
@@ -10,7 +10,7 @@ export default function Main() {
       <main className="main-wrapper">
         <div className="wrapper ">
           <div className="move-content">
-            <Form />
+            <ShortenForm />
             <Features />
           </div>
         </div>

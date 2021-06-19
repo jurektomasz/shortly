@@ -1,23 +1,11 @@
 import React, { useReducer } from "react";
 import PropTypes from "prop-types";
-import Button from "./Button";
 import { Link } from "react-router-dom";
+import { withAuth } from "../../auth/ProvideAuth";
+import formReducer from "../helpers/useFormReducer";
 
 import { HiOutlineMail } from "react-icons/hi";
 import { RiLockPasswordLine } from "react-icons/ri";
-
-import { withAuth } from "../ProvideAuth";
-import formReducer from "./useFormReducer";
-
-// const formReducer = (state, e) => {
-//   if (e.reset) {
-//     return { email: "", password: "" };
-//   }
-//   return {
-//     ...state,
-//     [e.name]: e.value,
-//   };
-// };
 
 function Login({ auth, location }) {
   const [formData, setFormData] = useReducer(formReducer, {});
@@ -84,7 +72,7 @@ function Login({ auth, location }) {
               <RiLockPasswordLine />
             </span>
           </div>
-          <Button text="Shorten It!" className="btn btn-secondary btn-form" />
+          <button className="btn btn-secondary btn-form">Login</button>
         </form>
         <div className="member">
           <span className="member-question">Not a member?</span>

@@ -8,16 +8,19 @@
   margin-top: 2rem;
   background-color: #fff;
   display: flex;
+  align-items: center;
+  border-radius: 1rem;
 
   &--long {
-    // flex-basis: 0;
-    // flex-grow: 2;
+    flex: 3;
+
     height: 3.3rem;
     width: 80%;
     overflow: hidden;
     text-overflow: ellipsis;
   }
   &--short {
+    flex: 2;
     width: 25%;
     margin-right: 2rem;
     color: $color-primary-cyan;

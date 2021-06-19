@@ -1,12 +1,11 @@
 import React, { useReducer, useState } from "react";
-import Button from "./Button";
 import { Link, Redirect } from "react-router-dom";
 
 import { HiOutlineMail } from "react-icons/hi";
 import { RiLockPasswordLine } from "react-icons/ri";
 import { FaRegUser } from "react-icons/fa";
 
-import formReducer from "./useFormReducer";
+import formReducer from "../helpers/useFormReducer";
 
 export default function Register() {
   const [formData, setFormData] = useReducer(formReducer, {});
@@ -122,7 +121,7 @@ export default function Register() {
               <RiLockPasswordLine />
             </span>
           </div>
-          <Button text="Shorten It!" className="btn btn-secondary btn-form" />
+          <button className="btn btn-secondary btn-form">Sign up</button>
         </form>
         <div className="member">
           <span className="member-question">Member already?</span>
