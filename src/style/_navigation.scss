@@ -57,6 +57,9 @@
   &__item {
     &:not(:last-child) {
       margin-right: 4rem;
+      @include media-lg {
+        margin-right: 1.5rem;
+      }
       @include media-md {
         margin-right: 0;
       }
@@ -83,23 +86,20 @@
     }
   }
 
-  &__user {
-    &:hover .hidden {
-      visibility: visible;
-    }
+  // &__user {
 
-    @include media-md {
-      display: none;
-    }
+  //   @include media-md {
+  //     display: none;
+  //   }
 
-    &--icon {
-      display: inline-flex;
-      justify-content: center;
-      align-items: center;
-      width: 3rem;
-      height: 3rem;
-    }
-  }
+  //   &--icon {
+  //     display: inline-flex;
+  //     justify-content: center;
+  //     align-items: center;
+  //     width: 3rem;
+  //     height: 3rem;
+  //   }
+  // }
 
   @include media-md {
     display: none;

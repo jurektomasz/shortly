@@ -2,12 +2,16 @@
   background-color: $color-primary-violet;
   background-image: url("/img/bg-boost-desktop.svg");
   background-size: cover;
+  background-position: center;
 
   color: white;
   text-align: center;
   padding: 8rem;
 
   @include media-md {
+    background-image: url("/img/bg-boost-mobile.svg");
     padding: 10rem 3rem;
+    background-size: cover;
+    background-position: center;
   }
 }

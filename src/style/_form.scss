@@ -5,6 +5,7 @@
   background-color: $color-primary-violet;
   background-image: url("/img/bg-shorten-desktop.svg");
   background-size: cover;
+  background-position: center;
 
   &__input {
     font-family: inherit;
@@ -28,8 +29,10 @@
   }
 
   @include media-md {
+    background-image: url("/img/bg-shorten-mobile.svg");
     flex-direction: column;
     padding: 4rem;
+    background-size: cover;
     background-position: center;
 
     &__input {
@@ -58,6 +61,7 @@
     overflow: auto;
 
     @include media-md {
+      background-image: url("/img/bg-boost-mobile.svg");
       height: 100vmax;
       padding: 2rem;
     }

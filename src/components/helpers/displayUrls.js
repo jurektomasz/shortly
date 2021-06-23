@@ -16,10 +16,10 @@ export const displayUrls = (arr) =>
   arr.map((el) => {
     return (
       <li className="link" key={el._id}>
-        <span className="link--long">{el.fullUrl}</span>
-        <span className="link--short">{`http://localhost:3001/${el.shortUrl}`}</span>
+        <span className="link__element link__element--long">{el.fullUrl}</span>
+        <span className="link__element link__element--short">{`/${el.shortUrl}`}</span>
         <button
-          className="btn btn-copy"
+          className="link__element btn btn-copy"
           onClick={(e) => {
             copyShortLink(`http://localhost:3001/${el.shortUrl}`);
             e.target.style.backgroundColor = "#3b3054";

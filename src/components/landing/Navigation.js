@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { withAuth } from "../../auth/ProvideAuth";
 
-import { FaRegUser } from "react-icons/fa";
+// import { FaRegUser } from "react-icons/fa";
 
 function Navigation({ auth }) {
   const [windowWidth, setWindowWidth] = useState(window.innerWidth);
@@ -91,13 +91,13 @@ function Navigation({ auth }) {
                     Logout
                   </a>
                 </li>
-                <li className="menu__item menu__user">
+                {/*                <li className="menu__item menu__user">
                   <span className="menu__link btn btn-tertiary btn-user">
                     <div className="menu__user--icon">
                       <FaRegUser />
                     </div>
                   </span>
-                </li>
+          </li>*/}
               </>
             </>
           )}
