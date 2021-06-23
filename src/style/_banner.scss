@@ -7,7 +7,7 @@
   text-align: center;
   padding: 8rem;
 
-  @include media-sm {
-    padding: 9rem 3rem;
+  @include media-md {
+    padding: 10rem 3rem;
   }
 }

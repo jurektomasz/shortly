@@ -14,10 +14,14 @@
       width: 95rem;
       top: 0rem;
       right: -38rem;
+
+      @include media-lg {
+        right: -50rem;
+      }
     }
   }
 
-  @include media-sm {
+  @include media-md {
     flex-direction: column-reverse;
     text-align: center;
 
@@ -79,7 +83,7 @@
     }
   }
 
-  @include media-sm {
+  @include media-md {
     &-primary {
       &--main {
         font-size: 5rem;

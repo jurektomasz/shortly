@@ -4,7 +4,7 @@
   justify-content: space-between;
   position: relative;
 
-  @include media-sm {
+  @include media-md {
     flex-direction: column;
     margin-bottom: -4rem;
   }
@@ -42,7 +42,7 @@
     transform: translateY(10rem);
   }
 
-  @include media-sm {
+  @include media-md {
     width: 100%;
     margin-bottom: 6rem;
 
@@ -62,7 +62,7 @@
   height: 1rem;
   background-color: $color-primary-cyan;
 
-  @include media-sm {
+  @include media-md {
     top: 0;
     left: 50%;
     width: 1rem;

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { withAuth } from "../../auth/ProvideAuth";
@@ -6,8 +6,8 @@ import { withAuth } from "../../auth/ProvideAuth";
 import { FaRegUser } from "react-icons/fa";
 
 function Navigation({ auth }) {
-  const [windowWidth, setWindowWidth] = React.useState(window.innerWidth);
-  React.useEffect(() => {
+  const [windowWidth, setWindowWidth] = useState(window.innerWidth);
+  useEffect(() => {
     function handleResize() {
       setWindowWidth(window.innerWidth);
     }

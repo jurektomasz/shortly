@@ -14,13 +14,20 @@
     flex: 1;
     border: none;
     border-radius: 1rem;
+    @include media-lg {
+      font-size: 2.2rem;
+    }
   }
 
   &__btn {
     margin-left: 3rem;
   }
 
-  @include media-sm {
+  @include media-lg {
+    padding: 7rem 4rem;
+  }
+
+  @include media-md {
     flex-direction: column;
     padding: 4rem;
     background-position: center;
@@ -50,7 +57,7 @@
     background-size: cover;
     overflow: auto;
 
-    @include media-sm {
+    @include media-md {
       height: 100vmax;
       padding: 2rem;
     }
@@ -61,6 +68,10 @@
     background-color: $color-secondary-gray;
     border-radius: 1rem;
     padding: 5rem;
+    @include media-md {
+      width: 50rem;
+      padding: 4rem 4rem;
+    }
     @include media-sm {
       width: 40rem;
       padding: 2rem 1rem;

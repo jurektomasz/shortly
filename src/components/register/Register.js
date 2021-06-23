@@ -41,7 +41,7 @@ export default function Register() {
     <Redirect
       to={{
         pathname: "/login",
-        state: { message: "You have been succesfuly registered!" },
+        state: { message: "You have been successfully registered!" },
       }}
     />
   ) : (

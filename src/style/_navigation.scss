@@ -5,7 +5,7 @@
   padding: 5rem 0;
   margin-bottom: 3rem;
 
-  @include media-sm {
+  @include media-md {
     position: relative;
   }
 }
@@ -14,7 +14,10 @@
   margin-right: 6rem;
   display: flex;
   align-items: center;
-  @include media-sm {
+  @include media-lg {
+    margin-right: 5rem;
+  }
+  @include media-md {
     margin-right: 0;
   }
 }
@@ -28,7 +31,7 @@
     align-items: center;
     transition: all 0.8s;
 
-    @include media-sm {
+    @include media-md {
       width: 100%;
       padding: 2rem 1.5rem;
       flex: 1;
@@ -39,14 +42,14 @@
 
     &--features {
       margin-right: auto;
-      @include media-sm {
+      @include media-md {
         margin-right: 0;
         flex: 1.5;
       }
     }
 
     &:not(:last-child) {
-      @include media-sm {
+      @include media-md {
         border-bottom: 1px solid rgba($color-tertiary-violet, 0.2);
       }
     }
@@ -54,11 +57,11 @@
   &__item {
     &:not(:last-child) {
       margin-right: 4rem;
-      @include media-sm {
+      @include media-md {
         margin-right: 0;
       }
     }
-    @include media-sm {
+    @include media-md {
       text-align: center;
       width: 100%;
     }
@@ -68,13 +71,13 @@
     color: $color-tertiary-violet;
     font-size: 2rem;
 
-    @include media-sm {
+    @include media-md {
       color: white;
     }
 
     &:hover {
       color: $color-tertiary-blue;
-      @include media-sm {
+      @include media-md {
         color: $color-tertiary-violet;
       }
     }
@@ -85,7 +88,7 @@
       visibility: visible;
     }
 
-    @include media-sm {
+    @include media-md {
       display: none;
     }
 
@@ -98,7 +101,7 @@
     }
   }
 
-  @include media-sm {
+  @include media-md {
     display: none;
     position: absolute;
     bottom: -48.5rem;
