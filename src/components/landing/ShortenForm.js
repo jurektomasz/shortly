@@ -25,13 +25,19 @@ export default function Form() {
   }, [storedUrls]);
 
   const createShortUrl = async (credentials) => {
-    await fetch("/api/v1/shortUrls/create-short-url", {
+    await fetch("http://localhost:3001/api/v1/shortUrls/create-short-url", {
       method: "POST",
       headers: authHeader,
       body: JSON.stringify(credentials),
     })
       .then((response) => response.json())
       .then((newUrl) => {
+        storedUrls.map((ex) => {
+          if (ex._id === newUrl._id) {
+            throw new Error("This url was already shortened");
+          }
+          return null;
+        });
         setStoredUrls((storedUrls) => [...storedUrls, newUrl]);
       })
       .catch((err) => console.log(err));

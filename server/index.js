@@ -27,7 +27,7 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use("/api/v1/shortUrls", shortUrlRoutes);
+app.use("/", shortUrlRoutes);
 app.use("/api/v1/users", userRoutes);
 
 if (process.env.NODE_ENV === "production") {
