@@ -1,6 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
+const path = require("path");
 
 const config = require("./config");
 const shortUrlRoutes = require("./routes/shortUrl");
@@ -28,6 +29,14 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use("/api/v1/shortUrls", shortUrlRoutes);
 app.use("/api/v1/users", userRoutes);
+
+if (process.env.NODE_ENV === "production") {
+  const buildPath = path.join(__dirname, "..", "build");
+  app.use(express.static(buildPath));
+  app.get("*", (req, res) => {
+    return res.sendFile(path.resolve(buildPath, "index.html"));
+  });
+}
 
 app.listen(PORT, () => {
   console.log("Server runing on port: " + PORT);

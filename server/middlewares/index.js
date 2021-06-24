@@ -21,11 +21,11 @@ exports.loggedUser = (req, res, next) => {
         res.locals.user = foundUser;
         next();
       } else {
-        return (res.locals.user = "user not found");
+        return (res.locals.user = "User not found");
       }
     });
   } else {
-    res.locals.user = "token not found";
+    res.locals.user = "Token not found";
     next();
   }
 };

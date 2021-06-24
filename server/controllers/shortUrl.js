@@ -1,14 +1,14 @@
 const ShortUrl = require("../models/shortUrl");
 
-exports.getShortUrls = async (req, res) => {
-  try {
-    const shortUrls = await ShortUrl.find();
+// exports.getShortUrls = async (req, res) => {
+//   try {
+//     const shortUrls = await ShortUrl.find();
 
-    return res.json(shortUrls);
-  } catch (error) {
-    return res.status(422).send(error);
-  }
-};
+//     return res.json(shortUrls);
+//   } catch (error) {
+//     return res.status(422).send(error);
+//   }
+// };
 
 exports.getShortUrlById = async (req, res) => {
   try {
@@ -21,19 +21,29 @@ exports.getShortUrlById = async (req, res) => {
   }
 };
 
-exports.createShortUrl = (req, res) => {
+exports.createShortUrl = async (req, res) => {
   const newUrlData = req.body;
   const { user } = res.locals;
 
   if (user && user._id) newUrlData.owner = user._id;
 
-  ShortUrl.create(newUrlData, (errors, newUrl) => {
-    if (errors) {
-      return res.status(422).send(errors);
-    }
+  try {
+    const existingUrl = await ShortUrl.findOne({ fullUrl: newUrlData.fullUrl });
 
-    return res.json(newUrl);
-  });
+    if (existingUrl) {
+      return res.json(existingUrl);
+    } else {
+      ShortUrl.create(newUrlData, (error, newUrl) => {
+        if (error) {
+          throw new Error(error);
+        }
+
+        return res.json(newUrl);
+      });
+    }
+  } catch (error) {
+    return res.status(422).send(error);
+  }
 };
 
 exports.getUserUrls = async (req, res) => {

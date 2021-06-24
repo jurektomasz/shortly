@@ -1,5 +1,5 @@
-module.exports = {
-  DB_URI:
-    "mongodb+srv://testadmin:testpassword@cluster0.quy75.mongodb.net/shortly?retryWrites=true&w=majority",
-  JWT_SECRET: "biusn3nrfu384s",
-};
+if (process.env.Node_ENV === "production") {
+  module.exports = require("./prod");
+} else {
+  module.exports = require("./dev");
+}
