@@ -25,7 +25,7 @@ export default function Form() {
   }, [storedUrls]);
 
   const createShortUrl = async (credentials) => {
-    await fetch("http://localhost:3001/api/v1/shortUrls/create-short-url", {
+    await fetch("/api/v1/shortUrls/create-short-url", {
       method: "POST",
       headers: authHeader,
       body: JSON.stringify(credentials),
