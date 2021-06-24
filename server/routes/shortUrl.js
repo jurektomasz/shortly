@@ -11,8 +11,8 @@ const {
 } = require("../controllers/shortUrl");
 
 // router.get("/", getShortUrls);
-router.get("api/v1/shortUrls/userUrls", loggedUser, getUserUrls);
-router.post("api/v1/shortUrls/create-short-url", loggedUser, createShortUrl);
+router.get("/userUrls", loggedUser, getUserUrls);
+router.post("/create-short-url", loggedUser, createShortUrl);
 router.get("/:id", loggedUser, getShortUrlById);
 
 module.exports = router;
