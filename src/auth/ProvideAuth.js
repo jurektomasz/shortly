@@ -10,7 +10,7 @@ function useProvideAuth() {
   const { removeToken, setToken, token } = useToken();
 
   const loginUser = async (credentials) => {
-    const data = await fetch("http://localhost:3001/api/v1/users/login", {
+    const data = await fetch("/api/v1/users/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(credentials),

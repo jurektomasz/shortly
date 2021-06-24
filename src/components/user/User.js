@@ -9,7 +9,7 @@ export default function User() {
   const { username } = useAuth().checkAuthState();
 
   useEffect(() => {
-    fetch("http://localhost:3001/api/v1/shortUrls/userUrls", {
+    fetch("/api/v1/shortUrls/userUrls", {
       method: "GET",
       headers: {
         "Content-Type": "application/json",

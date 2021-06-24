@@ -12,7 +12,7 @@ export default function Register() {
   const [shouldRedirect, setShouldRedirect] = useState(false);
 
   const registerUser = async (credentials) => {
-    await fetch("http://localhost:3001/api/v1/users/register", {
+    await fetch("/api/v1/users/register", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(credentials),

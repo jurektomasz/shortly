@@ -21,7 +21,7 @@ export const displayUrls = (arr) =>
         <button
           className="link__element btn btn-copy"
           onClick={(e) => {
-            copyShortLink(`http://localhost:3001/${el.shortUrl}`);
+            copyShortLink(`https://tj-shortly.herokuapp.com/${el.shortUrl}`);
             e.target.style.backgroundColor = "#3b3054";
             e.target.textContent = "Copied!";
           }}
