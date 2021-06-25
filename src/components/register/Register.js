@@ -1,32 +1,40 @@
 import React, { useReducer, useState } from "react";
 import { Link, Redirect } from "react-router-dom";
+import RegisterForm from "./RegisterForm";
 
-import { HiOutlineMail } from "react-icons/hi";
-import { RiLockPasswordLine } from "react-icons/ri";
-import { FaRegUser } from "react-icons/fa";
+import { registrationValidation } from "./validation";
 
 import formReducer from "../helpers/useFormReducer";
 
 export default function Register() {
   const [formData, setFormData] = useReducer(formReducer, {});
   const [shouldRedirect, setShouldRedirect] = useState(false);
+  const [errors, setErrors] = useState("");
 
   const registerUser = async (credentials) => {
-    await fetch("/api/v1/users/register", {
+    const data = await fetch("/api/v1/users/register", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(credentials),
-    });
+    }).then((res) => res.json());
+
+    return data;
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      await registerUser(formData).then(() => {
-        setShouldRedirect(true);
+
+    const isValid = registrationValidation(formData);
+    setErrors(isValid);
+
+    if (!isValid) {
+      await registerUser(formData).then((data) => {
+        if (data.error) {
+          setErrors(data.error.detail);
+        } else {
+          setShouldRedirect(true);
+        }
       });
-    } catch (error) {
-      console.log(error);
     }
   };
 
@@ -52,77 +60,12 @@ export default function Register() {
         </a>
       </div>
       <div className="form-wrapper">
-        <form className="form--main" onSubmit={handleSubmit}>
-          <h2 className="form-header">Sign up</h2>
-          <div className="form-input__wrapper">
-            <label htmlFor="registerUsername" className="form-label">
-              USERNAME
-            </label>
-            <input
-              type="text"
-              className="form-input"
-              id="registerUsername"
-              name="username"
-              placeholder="Username"
-              onChange={handleChange}
-            />
-            <span className="form-icon">
-              <FaRegUser />
-            </span>
-          </div>
-          <div className="form-input__wrapper">
-            <label htmlFor="registerEmail" className="form-label">
-              EMAIL
-            </label>
-            <input
-              type="text"
-              className="form-input"
-              id="registerEmail"
-              name="email"
-              placeholder="Email"
-              onChange={handleChange}
-            />
-            <span className="form-icon">
-              <HiOutlineMail />
-            </span>
-          </div>
-          <div className="form-input__wrapper">
-            <label htmlFor="registerPassword" className="form-label">
-              PASSWORD
-            </label>
-            <input
-              type="password"
-              className="form-input"
-              id="registerPassword"
-              name="password"
-              placeholder="Password"
-              onChange={handleChange}
-            />
-            <span className="form-icon">
-              <RiLockPasswordLine />
-            </span>
-          </div>
-          <div className="form-input__wrapper">
-            <label
-              htmlFor="registerPasswordConfirmation"
-              className="form-label"
-            >
-              PASSWORD CONFIRMATION
-            </label>
-            <input
-              type="password"
-              className="form-input"
-              id="registerPasswordConfirmation"
-              name="passwordConfirmation"
-              placeholder="Password Confirmation"
-              onChange={handleChange}
-            />
-            <span className="form-icon">
-              <RiLockPasswordLine />
-            </span>
-          </div>
-          <button className="btn btn-secondary btn-form">Sign up</button>
-        </form>
+        <RegisterForm
+          handleSubmit={handleSubmit}
+          handleChange={handleChange}
+          errors={errors}
+        />
+
         <div className="member">
           <span className="member-question">Member already?</span>
           <Link to="/login" className="member-link">

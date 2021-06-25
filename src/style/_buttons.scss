@@ -8,14 +8,14 @@
   &-tertiary,
   &-copy {
     position: relative;
-    color: white;
+    color: $color-secondary-gray;
     background-color: $color-primary-cyan;
     border-radius: 50rem;
     transition: background 0.3s;
 
     &:hover {
       background-color: $color-secondary-cyan;
-      color: white;
+      color: $color-secondary-gray;
     }
   }
 
@@ -62,7 +62,7 @@
     padding: 1rem 3rem;
     border-radius: 0.7rem;
     background-color: $color-primary-violet;
-    color: white;
+    color: $color-secondary-gray;
   }
   &-form {
     margin-top: 2rem;

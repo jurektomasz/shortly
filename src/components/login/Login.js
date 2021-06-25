@@ -1,20 +1,24 @@
-import React, { useReducer } from "react";
+import React, { useReducer, useState } from "react";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 import { withAuth } from "../../auth/ProvideAuth";
 import formReducer from "../helpers/useFormReducer";
 
-import { HiOutlineMail } from "react-icons/hi";
-import { RiLockPasswordLine } from "react-icons/ri";
+import LoginForm from "./LoginForm";
 
 function Login({ auth, location }) {
   const [formData, setFormData] = useReducer(formReducer, {});
+  const [errors, setErrors] = useState("");
 
   const { loginUser } = auth;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await loginUser(formData);
+    await loginUser(formData).then((data) => {
+      if (data.error) {
+        setErrors(data.error.detail);
+      }
+    });
   };
 
   const handleChange = (e) => {
@@ -34,46 +38,13 @@ function Login({ auth, location }) {
         </a>
       </div>
       <div className="form-wrapper">
-        <form className="form--main" onSubmit={handleSubmit}>
-          <h2 className="form-header">LOGIN</h2>
-          {message && <h2 className="form-header">{message}</h2>}
-
-          <div className="form-input__wrapper">
-            <label htmlFor="loginEmail" className="form-label">
-              EMAIL
-            </label>
-            <input
-              type="text"
-              className="form-input"
-              id="loginEmail"
-              name="email"
-              placeholder="Email"
-              onChange={handleChange}
-              value={formData.email || ""}
-            />
-            <span className="form-icon">
-              <HiOutlineMail />
-            </span>
-          </div>
-          <div className="form-input__wrapper">
-            <label htmlFor="loginPassword" className="form-label">
-              PASSWORD
-            </label>
-            <input
-              type="password"
-              className="form-input"
-              id="loginPassword"
-              name="password"
-              placeholder="Password"
-              onChange={handleChange}
-              value={formData.password || ""}
-            />
-            <span className="form-icon">
-              <RiLockPasswordLine />
-            </span>
-          </div>
-          <button className="btn btn-secondary btn-form">Login</button>
-        </form>
+        <LoginForm
+          handleSubmit={handleSubmit}
+          handleChange={handleChange}
+          formData={formData}
+          message={message}
+          errors={errors}
+        />
         <div className="member">
           <span className="member-question">Not a member?</span>
           <Link to="/register" className="member-link">

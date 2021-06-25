@@ -24,7 +24,7 @@ export default function User() {
 
   return (
     <div className="user-links">
-      <h1 className="heading-secondary">{username} URLS</h1>
+      <h1 className="heading-secondary">{`${username}'s`} URLS</h1>
       <ul className="links-list">{displayUrls(urls)}</ul>
     </div>
   );

@@ -1,6 +1,11 @@
 .header-wrapper {
   padding: 3rem;
   margin-bottom: 13rem;
+
+  &__user {
+    padding: 3rem;
+    margin-bottom: -2rem;
+  }
 }
 
 .main-wrapper {
@@ -10,7 +15,7 @@
 
 .footer-wrapper {
   background-color: $color-tertiary-dark;
-  color: white;
+  color: $color-secondary-gray;
   padding: 6rem 3rem;
 }
 

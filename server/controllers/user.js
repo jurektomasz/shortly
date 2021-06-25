@@ -6,13 +6,10 @@ exports.login = (req, res) => {
   const { email, password } = req.body;
 
   if (!email || !password) {
-    return res.status(422).send({
-      errors: [
-        {
-          title: "User error",
-          detail: "Email or password not provided",
-        },
-      ],
+    return res.sendApiError({
+      status: 422,
+      title: "User error",
+      detail: "Email or password not provided",
     });
   }
 
@@ -22,13 +19,10 @@ exports.login = (req, res) => {
     }
 
     if (!foundUser) {
-      return res.status(422).send({
-        errors: [
-          {
-            title: "User error",
-            detail: "User with this email doesn't exist",
-          },
-        ],
+      return res.sendApiError({
+        status: 422,
+        title: "User error",
+        detail: "User with this email doesn't exist",
       });
     }
 
@@ -44,13 +38,10 @@ exports.login = (req, res) => {
 
       return res.json(token);
     } else {
-      return res.status(422).send({
-        errors: [
-          {
-            title: "User error",
-            detail: "Wrong password",
-          },
-        ],
+      return res.sendApiError({
+        status: 422,
+        title: "User error",
+        detail: "Wrong password",
       });
     }
   });
@@ -59,22 +50,19 @@ exports.login = (req, res) => {
 exports.register = (req, res) => {
   const { username, email, password, passwordConfirmation } = req.body;
 
-  if (!email || !password) {
-    return res.status(422).send({
-      errors: [
-        { title: "User error", detail: "Email or password not provided" },
-      ],
+  if (!username || !email || !password) {
+    return res.sendApiError({
+      status: 422,
+      title: "User error",
+      detail: "Username, email or password not provided",
     });
   }
 
   if (password !== passwordConfirmation) {
-    return res.status(422).send({
-      errors: [
-        {
-          title: "User error",
-          detail: "Password and password confirmation must be the same",
-        },
-      ],
+    return res.sendApiError({
+      status: 422,
+      title: "User error",
+      detail: "Password and password confirmation must be the same",
     });
   }
 
@@ -83,13 +71,10 @@ exports.register = (req, res) => {
       return res.status(422).send(error);
     }
     if (existingUser) {
-      return res.status(422).send({
-        errors: [
-          {
-            title: "User error",
-            detail: "User with this email already exist",
-          },
-        ],
+      return res.sendApiError({
+        status: 422,
+        title: "User error",
+        detail: "User with this email already exist",
       });
     }
 

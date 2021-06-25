@@ -75,7 +75,7 @@
     font-size: 2rem;
 
     @include media-md {
-      color: white;
+      color: $color-secondary-gray;
     }
 
     &:hover {

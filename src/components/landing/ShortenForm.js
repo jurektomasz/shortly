@@ -5,11 +5,12 @@ import { displayUrls } from "../helpers/displayUrls";
 
 import { useAuth } from "../../auth/ProvideAuth";
 
-export default function Form() {
+export default function ShortenForm() {
   const [formData, setFormData] = useReducer(formReducer, {});
   const [storedUrls, setStoredUrls] = useState(
     JSON.parse(sessionStorage.getItem("url")) || []
   );
+  const [errors, setErrors] = useState("");
   const { token } = useToken();
   const { isAuthenticated } = useAuth();
 
@@ -25,27 +26,28 @@ export default function Form() {
   }, [storedUrls]);
 
   const createShortUrl = async (credentials) => {
-    await fetch("http://localhost:3001/api/v1/shortUrls/create-short-url", {
+    await fetch("/api/v1/shortUrls/create-short-url", {
       method: "POST",
       headers: authHeader,
       body: JSON.stringify(credentials),
     })
       .then((response) => response.json())
       .then((newUrl) => {
-        storedUrls.map((ex) => {
-          if (ex._id === newUrl._id) {
+        storedUrls.map((existUrl) => {
+          if (existUrl._id === newUrl._id) {
             throw new Error("This url was already shortened");
           }
           return null;
         });
         setStoredUrls((storedUrls) => [...storedUrls, newUrl]);
       })
-      .catch((err) => console.log(err));
+      .catch((error) => setErrors(error.message));
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     try {
+      setErrors("");
       createShortUrl(formData);
     } catch (error) {
       console.log(error);
@@ -75,6 +77,7 @@ export default function Form() {
         </button>
       </form>
       <ul className="links-list">{displayUrls(storedUrls)}</ul>
+      {errors && <h3 className="form-error">{errors}</h3>}
     </div>
   );
 }

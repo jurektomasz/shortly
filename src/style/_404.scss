@@ -1,0 +1,29 @@
+.not-found {
+  &__container {
+    height: 100vh;
+    width: 100vw;
+    background-color: $color-primary-violet;
+    background-image: url("/img/bg-boost-desktop.svg");
+    background-position: center;
+    background-size: cover;
+    color: $color-secondary-gray;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  &__wrapper {
+    padding: 4rem;
+    text-align: center;
+  }
+  &__number {
+    font-size: 8rem;
+    font-weight: bold;
+    margin-bottom: 3rem;
+    letter-spacing: 2rem;
+  }
+  &__text {
+    margin-bottom: 2rem;
+    font-size: 2rem;
+    letter-spacing: 1rem;
+  }
+}

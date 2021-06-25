@@ -13,7 +13,12 @@ const ShortUrl = require("../models/shortUrl");
 exports.getShortUrlById = async (req, res) => {
   try {
     const foundUrl = await ShortUrl.findOne({ shortUrl: req.params.id });
+    const urlRegex = /https?:\/\/(www\.)?/;
+
     if (foundUrl == null) return res.sendStatus(404);
+
+    if (!urlRegex.test(foundUrl.fullUrl))
+      foundUrl.fullUrl = `http://${foundUrl.fullUrl}`;
 
     res.redirect(foundUrl.fullUrl);
   } catch (error) {

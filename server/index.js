@@ -3,6 +3,7 @@ const cors = require("cors");
 const mongoose = require("mongoose");
 const path = require("path");
 
+const { provideErrorHandler } = require("./middlewares");
 const config = require("./config");
 const shortUrlRoutes = require("./routes/shortUrl");
 const userRoutes = require("./routes/user");
@@ -26,6 +27,8 @@ app.use(cors());
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+app.use(provideErrorHandler);
 
 app.use("/", shortUrlRoutes);
 app.use("/api/v1/users", userRoutes);
